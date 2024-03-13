@@ -1,12 +1,13 @@
 .model small
 .stack 100h
 .data
-a db "enter three number$"
+a db " Enter two number$" 
+b db " After swap$"
+c db " Before swap$"
 .code
-
 main proc
     mov ax,@data
-    mov ds,ax
+    mov ds,ax  
     
     mov ah,9
     lea dx,a
@@ -16,7 +17,7 @@ main proc
     mov dl,10
     int 21h
     mov dl,13
-    int 21h 
+    int 21h
     
     mov ah,1
     int 21h
@@ -24,11 +25,49 @@ main proc
     
     mov ah,1
     int 21h
-    mov bh,al
+    mov bh,al 
     
-    mov ah,1
+    mov ah,2
+    mov dl,10
     int 21h
-    mov cl,al
+    mov dl,13
+    int 21h 
+    
+    mov ah,9
+    lea dx,b
+    int 21h
+    
+    mov ah,2
+    mov dl,10
+    int 21h
+    mov dl,13
+    int 21h
+    
+    mov ah,2
+    mov dl,bl
+    int 21h
+    
+    mov ah,2
+    mov dl,10
+    int 21h
+    mov dl,13
+    int 21h 
+    
+    mov ah,2
+    mov dl,bh
+    int 21h 
+    
+    mov ah,2
+    mov dl,10
+    int 21h
+    mov dl,13
+    int 21h  
+    
+    xchg bl,bh
+    
+    mov ah,9 
+    lea dx,c
+    int 21h  
     
     mov ah,2
     mov dl,10
@@ -48,7 +87,7 @@ main proc
     
     mov ah,2
     mov dl,bh
-    int 21h
+    int 21h 
     
     mov ah,2
     mov dl,10
@@ -56,12 +95,10 @@ main proc
     mov dl,13
     int 21h 
     
-    mov ah,2
-    mov dl,cl
-    int 21h
-    
     exit:
     mov ah,4ch
     int 21h
     main endp
 end main
+    
+    
